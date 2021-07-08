@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Biblioseca.Model;
+using NHibernate;
+using NHibernate.Cfg;
 
 namespace Biblioseca.ConsoleApp
 {
@@ -11,7 +13,22 @@ namespace Biblioseca.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Author author = new Author(); 
+            ISessionFactory sessionFactory = new Configuration()
+                .Configure()
+                .BuildSessionFactory();
+
+            ISession session = sessionFactory.OpenSession();
+
+
+            Author author = new Author();
+            author.FirstName = "Ernesto";
+            author.LastName = "Sábato";
+
+            session.Save(author);
+
+            Console.WriteLine(author.Id);
+            Console.ReadKey();
+
         }
     }
 }
