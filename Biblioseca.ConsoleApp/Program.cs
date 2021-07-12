@@ -20,13 +20,16 @@ namespace Biblioseca.ConsoleApp
             ISession session = sessionFactory.OpenSession();
 
 
-            Author author = new Author();
-            author.FirstName = "Ernesto";
-            author.LastName = "Sábato";
+            Book book = new Book();
+            book.Title = "Operación Masacre";
+            book.AuthorId = 1;
+            book.Category = "Novela No Ficción";
+            book.ISBN = "978 - 950 - 515 - 352 - 7";
+            book.Description = "Historia de los fusilamientos clandestinos de 1956";
 
-            session.Save(author);
+            session.Save(book);
 
-            Console.WriteLine(author.Id);
+            Console.WriteLine(book.Id);
             Console.ReadKey();
 
         }
